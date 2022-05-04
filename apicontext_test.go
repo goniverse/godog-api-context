@@ -549,6 +549,10 @@ func TestApiContext_StoreJsonPathValue(t *testing.T) {
 	assert.NotNil(t, ctx.lastResponse)
 	assert.Nil(t, ctx.StoreJsonPathValue("$.a", "hello"))
 	assert.Nil(t, ctx.TheScopeVariableShouldHaveValue("hello", "a"))
+	assert.Nil(t, ctx.StoreJsonPathValue("$.b", "number"))
+	assert.Nil(t, ctx.TheScopeVariableShouldHaveValue("number", "2"))
+	assert.Nil(t, ctx.StoreJsonPathValue("$.c", "float"))
+	assert.Nil(t, ctx.TheScopeVariableShouldHaveValue("float", "3.5"))
 }
 
 func TestApiContext_ReplaceScopeVariables(t *testing.T) {
