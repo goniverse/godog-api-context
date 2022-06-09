@@ -1,3 +1,10 @@
+## [1.7.0](https://github.com/goniverse/godog-api-context/compare/v1.6.1...v1.7.0) (2022-06-09)
+
+
+### Bug Fixes
+
+* Add support for multiple input types for scope variables ([57e5b20](https://github.com/goniverse/godog-api-context/commit/57e5b20662f46a7772a21deabdbde41a352e4736))
+
 ## [1.6.1](https://github.com/brpaz/godog-api-context/compare/v1.6.0...v1.6.1) (2021-08-09)
 
 
