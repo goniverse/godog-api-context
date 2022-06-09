@@ -388,6 +388,7 @@ func (ctx *ApiContext) TheJSONPathShouldHaveValue(pathExpr string, expectedValue
 // TheJSONPathShouldMatch Validates Checks if the the value from the specified json path matches the specified pattern.
 func (ctx *ApiContext) TheJSONPathShouldMatch(pathExpr string, pattern string) error {
 	var jsonData interface{}
+	var match bool
 
 	if err := json.Unmarshal([]byte(ctx.lastResponse.Body), &jsonData); err != nil {
 		return err
@@ -399,7 +400,12 @@ func (ctx *ApiContext) TheJSONPathShouldMatch(pathExpr string, pattern string) e
 		return err
 	}
 
-	match, err := regexp.MatchString(pattern, value.(string))
+	switch v := value.(type) {
+	case string:
+		match, err = regexp.MatchString(pattern, v)
+	default:
+		match, err = regexp.MatchString(pattern, fmt.Sprint(v))
+	}
 
 	if err != nil {
 		return err
@@ -534,7 +540,7 @@ func (ctx *ApiContext) TheResponseShouldMatchJsonSchema(path string) error {
 			schemaErrors = append(schemaErrors, error.String())
 		}
 
-		return fmt.Errorf("The response is not valid according to the specified schema %s\n %v", path, schemaErrors)
+		return fmt.Errorf("the response is not valid according to the specified schema %s\n %v", path, schemaErrors)
 	}
 
 	return nil
@@ -604,7 +610,12 @@ func (ctx *ApiContext) StoreJsonPathValue(pathExpr string, scopeKeyName string) 
 	if err != nil {
 		return err
 	}
-	ctx.scope[scopeKeyName] = actualValue.(string)
+	switch v := actualValue.(type) {
+	case string:
+		ctx.scope[scopeKeyName] = v
+	default:
+		ctx.scope[scopeKeyName] = fmt.Sprint(v)
+	}
 	return nil
 }
 
