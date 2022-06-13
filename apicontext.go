@@ -471,7 +471,7 @@ func (ctx *ApiContext) TheJSONPathHaveCount(pathExpr string, expectedCount int) 
 func (ctx *ApiContext) TheResponseShouldMatchJSON(body *godog.DocString) error {
 	actual := strings.Trim(ctx.lastResponse.Body, "\n")
 
-	expected := body.Content
+	expected := ctx.ReplaceScopeVariables(body.Content)
 
 	match, err := isEqualJson(actual, expected)
 	if err != nil {

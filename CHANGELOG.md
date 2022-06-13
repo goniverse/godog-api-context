@@ -1,3 +1,10 @@
+## [1.7.1](https://github.com/goniverse/godog-api-context/compare/v1.7.0...v1.7.1) (2022-06-09)
+
+
+### Bug Fixes
+
+* Add ReplaceScopeVariables to TheResponseShouldMatchJSON ([632eacd](https://github.com/goniverse/godog-api-context/commit/632eacdd2b14ef76f051a3f5df1a5f74bd328893))
+
 ## [1.7.0](https://github.com/goniverse/godog-api-context/compare/v1.6.1...v1.7.0) (2022-06-09)
 
 
